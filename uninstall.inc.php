@@ -1,6 +1,6 @@
 <?php
 /**
- * slice_onoff Online-Status für Slices
+ * slice_onoff Online-Status fÃ¼r Slices
  * @author me[AT]fm86[PUNKT]de Fabian Michael
  * @package redaxo4
  */
