@@ -1,4 +1,4 @@
-<!--
+==<!--
 /**
  * Redaxo Addon slice_onoff - Online-Status für Slices
  *
@@ -12,7 +12,7 @@
  * @version 0.3.1
  *
  */
- -->
+ -->==
 
 h1. Redaxo Addon "slice_onoff"
 
