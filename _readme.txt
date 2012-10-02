@@ -1,8 +1,18 @@
-<!-- /**
- * Slice On- und Offline Schalten Addon
- * @author me[ät]fm86[punkt]de Fabian Michael
- * @package redaxo4
- */ -->
+<!--
+/**
+ * Redaxo Addon slice_onoff - Online-Status für Slices
+ *
+ * @author Fabian Michael me[AT]fm86[PUNKT]de
+ * @author Sven Kesting <sk[AT]decaf[PUNKT]de>
+ *
+ * @link https://github.com/jdlx/slice_onoff
+ * @link http://www.redaxo.org/de/download/addons/?addon_id=356
+ *
+ * @package redaxo 4.2.x/4.3.x/4.4.x
+ * @version 0.3.1
+ *
+ */
+ -->
 
 <h2>Beschreibung:</h2>
 <p>Mit diesem Addon kann f&uuml;r einzelne Slices festgelegt werden, ob sie sichbar sind oder nicht.

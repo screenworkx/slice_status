@@ -1,39 +1,48 @@
 <?php
-
 /**
- * slice_onoff Online-Status für Slices
- * @author me[AT]fm86[PUNKT]de Fabian Michael
- * @package redaxo4
+ * Redaxo Addon slice_onoff - Online-Status für Slices
+ *
+ * @author Fabian Michael me[AT]fm86[PUNKT]de
+ * @author Sven Kesting <sk[AT]decaf[PUNKT]de>
+ *
+ * @link https://github.com/jdlx/slice_onoff
+ * @link http://www.redaxo.org/de/download/addons/?addon_id=356
+ *
+ * @package redaxo 4.2.x/4.3.x/4.4.x
+ * @version 0.3.1
+ *
  */
+
+
 class SliceOnOff
 {
-  static private $instance = null;
+  static private $instance         = null;
 
-  protected $getParam_sliceId = 'a356_slice_id';
-  protected $getParam_setState = 'a356_set_state';
-  protected $getParam_ajaxRequest = 'a356_ajax';
-  protected $dbField_isOnline = 'a356_is_online';
+  protected $getParam_sliceId      = 'a356_slice_id';
+  protected $getParam_setState     = 'a356_set_state';
+  protected $getParam_ajaxRequest  = 'a356_ajax';
+  protected $dbField_isOnline      = 'a356_is_online';
   protected $onlineSwitchFieldName = 'a356_onoff';
-  protected $defaultOnlineValue = 1;
-  private $onlineStates = array();
+  protected $defaultOnlineValue    = 1;
+  private   $onlineStates          = array();
 
-  private $debug = FALSE;
+  private   $debug                 = FALSE;
 
-  private $updatesDone = false;
-  private $isAjaxRequest = false;
-  private $ajaxResponse = '';
+  private   $updatesDone           = false;
+  private   $isAjaxRequest         = false;
+  private   $ajaxResponse          = '';
 
-  private $isArticleOverviewPage = false;
+  private   $isArticleOverviewPage = false;
 
   // Namen für Link-Klassen
-  private $redLinkClass = 'rex-clr-grn';
-  private $greenLinkClass = 'rex-clr-red';
+  private   $redLinkClass          = 'rex-clr-grn';
+  private   $greenLinkClass        = 'rex-clr-red';
 
   // Ersetzungen
-  private $arrToFind = array('<input type="submit" name="btn_save"', '<input type="submit" value="Block speichern" name="btn_save"');
+  private   $arrToFind             = array('<input type="submit" name="btn_save"', '<input type="submit" value="Block speichern" name="btn_save"');
 
+  private   $query_count           = 0;
 
-  private $query_count = 0;
 
   /**
     * Privater Konstruktor. Klasse wendet Singleton-Entwurfsmuster an, d.h. es kann nur eine Instanz von ihr geben.
@@ -62,25 +71,34 @@ class SliceOnOff
     }
   }
 
-  // Debug-Funktion
-  public function frontendOutputFilter($params) {
+
+  /**
+    * Debug-Funktion
+    */
+  public function frontendOutputFilter($params)
+  {
     return str_replace('</body>', '<div style="position: absolute; top: 0; left: 0;">Queries done by Slice_onoff: ' . $this->query_count . '</div></body>', $params['subject']);
   }
+
 
   /**
     * Zugriff auf das Klassenobjekt
     *
     * @return     Eine Referenz auf die Instanz dieser Klasse
     */
-  public static function instance() {
+  public static function instance()
+  {
     if (SliceOnOff::$instance === null) {
       SliceOnOff::$instance = new SliceOnOff();
     }
     return SliceOnOff::$instance;
   }
 
-  // Callback fï¿½r ART_SLICE_MENU
-  public function handleSliceEditMenu($params) {
+  /**
+    * Callback für ART_SLICE_MENU
+    */
+  public function handleSliceEditMenu($params)
+  {
     global $REX;
     extract($params);
     $this->isArticleOverviewPage = true;
@@ -119,8 +137,12 @@ class SliceOnOff
     return $subject;
   }
 
-  // Callback für SLICE_SHOW im Frontend und Backend
-  public function sliceShow($params) {
+
+  /**
+    * Callback für SLICE_SHOW im Frontend und Backend
+    */
+  public function sliceShow($params)
+  {
     global $REX;
     extract($params);
     $this->doUpdates($params);
@@ -132,7 +154,10 @@ class SliceOnOff
     return "<?php if(".($this->isOnline($slice_id)?'TRUE':'FALSE')." OR SliceOnOff::isBackend()$conditions): ?>" . $subject . '<?php endif; ?>';
   }
 
-  // Callback fuer OUTPUT_FILTER im Backend
+
+  /**
+    * Callback fuer OUTPUT_FILTER im Backend
+    */
   public function outputFilter($params)
   {
     global $REX, $REX_USER;
@@ -182,8 +207,11 @@ class SliceOnOff
     return $subject;
   }
 
-  // Online-Status einmalig bei Seitenaufruf aktualisieren
-  private function doUpdates($params) {
+  /**
+    * Online-Status einmalig bei Seitenaufruf aktualisieren
+    */
+  private function doUpdates($params)
+  {
     if ($this->updatesDone === true) {
       return;
     }
@@ -229,7 +257,9 @@ class SliceOnOff
     $this->updatesDone = true;
   }
 
-  private function userHasPermission() {
+
+  private function userHasPermission()
+  {
     global $REX_USER;
 
     if (!isset($REX_USER)) {
@@ -249,6 +279,7 @@ class SliceOnOff
     }
   }
 
+
   public function isOnline($slice_id)
   {
     global $REX;
@@ -262,7 +293,9 @@ class SliceOnOff
     return $this->onlineStates[$slice_id];
   }
 
-  private function toggleOnline($slice_id) {
+
+  private function toggleOnline($slice_id)
+  {
     if ($this->isOnline($slice_id)) {
       $this->setOnline($slice_id, 0);
     } else {
@@ -270,6 +303,7 @@ class SliceOnOff
     }
     return $this->isOnline($slice_id);
   }
+
 
   private function setOnline($slice_id, $online_state)
   {
@@ -284,7 +318,7 @@ class SliceOnOff
       return;
     }
 
-    $sql = new rex_sql;
+    $sql = rex_sql::factory();
 
     $sql->setQuery('UPDATE ' . $REX['TABLE_PREFIX'] . 'article_slice
       SET ' . $this->dbField_isOnline . ' = ' . $online_state . ' WHERE id=' . $slice_id);
@@ -303,16 +337,18 @@ class SliceOnOff
     }
   }
 
+
   /**
     * Lädt den Online-Status für alle Module aus einem oder mehrere Artikel
     *
     * @param mixed Ein int article_id oder ein Array der Form array(int article_id, int article_id2, ...)
     * @return void
     */
-  public function preloadOnlineStates($param_ids, $load_by='article_id') {
+  public function preloadOnlineStates($param_ids, $load_by='article_id')
+  {
     global $REX;
 
-    $sql = new rex_sql;
+    $sql = rex_sql::factory();
 
     if ($load_by == 'article_id') {
       if (is_array($param_ids)) {
@@ -354,27 +390,34 @@ class SliceOnOff
     }
   }
 
-  private function getLastInsertedSliceId() {
+
+  private function getLastInsertedSliceId()
+  {
     global $REX, $REX_USER;
-    $sql = new rex_sql;
+    $sql = rex_sql::factory();
     $res = $sql->getArray('SELECT MAX(id) AS max_id FROM ' . $REX['TABLE_PREFIX'] . 'article_slice
       WHERE createuser = ' . $sql->escape($REX_USER->getValue('login'))); // Zuletzt hinzugefï¿½gte ID bestimmen
     return $res[0]['max_id'];
   }
 
 
-  private function sendAjaxResponseOnOutput($message) {
+  private function sendAjaxResponseOnOutput($message)
+  {
     global $REX;
     header('Content-Type: text/plain; charset=utf-8');
     $this->ajaxResponse .= strstr($REX['LANG'], 'utf8') ? utf8_encode($message) : $message;
   }
 
-  private function throwError($message) {
+
+  private function throwError($message)
+  {
     $this->sendAjaxResponseOnOutput("Error: $message");
     error_log('Error in REDAXO slice_onoff Addon: ' . $message);
   }
 
-  public static function isBackend() {
+
+  public static function isBackend()
+  {
     global $REX;
     if ($REX['REDAXO']) {
       return true;
@@ -383,5 +426,3 @@ class SliceOnOff
     }
   }
 }
-
-?>
