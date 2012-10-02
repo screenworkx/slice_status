@@ -11,8 +11,8 @@ $mypage = 'slice_onoff';
 $REX['ADDON']['rxid'][$mypage] = '356';
 $REX['ADDON']['page'][$mypage] = $mypage;
 $REX['ADDON']['perm'][$mypage] = 'slice_onoff[]';
-$REX['ADDON']['version'][$mypage] = '0.2b';
-$REX['ADDON']['author'][$mypage] = 'Fabian Michael <me[AT]fm86[PUNKT]de>';
+$REX['ADDON']['version'][$mypage] = '0.2d';
+$REX['ADDON']['author'][$mypage] = 'Fabian Michael <me[AT]fm86[PUNKT]de> | caching by Sven Kesting <sk[AT]decaf[PUNKT]de>';
 
 // Berechtigungen
 $REX['PERM'][] = 'slice_onoff[]';

@@ -1,6 +1,6 @@
 <!-- /**
  * Slice On- und Offline Schalten Addon
- * @author me[ät]fm86[punkt]de Fabian Michael
+ * @author me[Ã¤t]fm86[punkt]de Fabian Michael
  * @package redaxo4
  */ -->
 

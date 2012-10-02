@@ -1,13 +1,21 @@
 <!-- /**
  * Slice On- und Offline Schalten Addon
- * @author me[ät]fm86[punkt]de Fabian Michael
+ * @author me[Ã¤t]fm86[punkt]de Fabian Michael
  * @package redaxo4
  */ -->
 
 <h2>ChangeLog:</h2>
 
+<p><em>02.12.2010 - v0.3</em><br />
+- [Feature] improved ui, added silk icons (http://www.famfamfam.com/lab/icons/silk/). Stefan Ullrich <su@decaf.de>
+</p>
+
+<p><em>01.12.2010 - v0.2d</em><br />
+- [Feature] Writng slice states directly to cached article. Sven Kesting <sk@decaf.de>
+</p>
+
 <p><em>11.03.2009 - v0.2b</em><br />
-- [Feature, Bugfix] Kompatibilität mit Redaxo 4.2 eingeführt.
+- [Feature, Bugfix] KompatibilitÃ¤t mit Redaxo 4.2 eingefÃ¼hrt.
 </p>
 
 <p><em>14.08.2008 - v0.2a</em><br />
