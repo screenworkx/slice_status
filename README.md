@@ -8,7 +8,7 @@ Download/Installation
 ---------------------
 
 * Download hier: https://github.com/RexDude/slice_status/downloads
-* ZIP-Archiv entpacken und in den `/redaxo/include/addons` kopieren, im Backend Addon dann installieren und aktivieren
+* ZIP-Archiv entpacken und in `/redaxo/include/addons` kopieren, im Backend Addon dann installieren und aktivieren
 
 Features
 --------
