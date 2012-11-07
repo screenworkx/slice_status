@@ -7,7 +7,7 @@ Es ist der Nachfolger des slice_onoff Addons und wurde von Grund auf neu geschri
 Download/Installation
 ---------------------
 
-* Download hier: https://github.com/RexDude/slice_status/downloads
+* Download hier unter _Download Packages_: https://github.com/RexDude/slice_status/downloads
 * ZIP-Archiv entpacken und in `/redaxo/include/addons` kopieren, im Backend Addon dann installieren und aktivieren
 
 Features
