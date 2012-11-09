@@ -40,3 +40,8 @@ Todo's
 * Einstellung: Icon und/oder nur Textlink anzeigen
 * Einstellung: Ajax on/off
 * Benutzern nur mit Artikel-Schreibrechten On/Offline-Status setzten lassen
+
+Icons
+-----
+
+Die Icons sind den <a href="http://www.famfamfam.com/lab/icons/silk/">FamFamFam Silk Icons</a> entnommen.
