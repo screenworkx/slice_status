@@ -40,6 +40,7 @@ Todo's
 * Einstellung: Icon und/oder nur Textlink anzeigen
 * Einstellung: Ajax on/off
 * Benutzern nur mit Artikel-Schreibrechten On/Offline-Status setzten lassen
+* Online von/bis Funktionalität hinzufügen: https://github.com/RexDude/slice_status/issues/2
 
 Icons
 -----
