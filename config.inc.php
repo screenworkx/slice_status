@@ -20,6 +20,10 @@ $REX['ADDON']['slice_status']['slice_content_opacity'] = '0.6';
 require_once($REX['INCLUDE_PATH'] . '/addons/slice_status/functions/functions_slice_status.inc.php');
 
 if ($REX['REDAXO']) {
+	// lang
+	$I18N->appendFile($REX['INCLUDE_PATH'] . '/addons/' . $mypage . '/lang/');
+
+	// handle slice menu
 	rex_register_extension('ART_SLICE_MENU', 'modifySliceEditMenu');
 
 	// update slice status in db

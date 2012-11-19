@@ -1,6 +1,8 @@
 <?php
 function modifySliceEditMenu($params) {
     global $REX;
+	global $I18N;
+	
     extract($params);
 	//out($params);
 
@@ -18,13 +20,13 @@ function modifySliceEditMenu($params) {
 		//$aText = 'online';
 		$aClass = 'slice-status-online';
 		
-		$aTitle = 'Offline schalten';
+		$aTitle = $I18N->msg('toggle_slice_offline');
 		$imgSrc = 'on.png';
 		$changeStatusParam = '0';
 	} else {
 		//$aText = 'offline';
 		$aClass = 'slice-status-offline';
-		$aTitle = 'Online schalten';
+		$aTitle = $I18N->msg('toggle_slice_online');
 		$imgSrc = 'off.png';
 		$changeStatusParam = '1';
 	}
