@@ -15,12 +15,10 @@ function modifySliceEditMenu($params) {
 	if ($curStatus == 1) {
 		$aClass = 'slice-status slice-' . $slice_id . ' online';
 		$aTitle = $I18N->msg('toggle_slice_offline');
-		$imgSrc = '/files/addons/slice_status/on.png';
 		$newStatus = '0';
 	} else {
 		$aClass = 'slice-status slice-' . $slice_id . ' offline';
 		$aTitle = $I18N->msg('toggle_slice_online');
-		$imgSrc = '/files/addons/slice_status/off.png';
 		$newStatus = '1';
 	}
 	
@@ -32,7 +30,7 @@ function modifySliceEditMenu($params) {
 	}
 	
 	// inject link in slice menu
-	$subject[] = '<a class="' . $aClass . '" style="background: none; margin-left: -4px; margin-top: -1px;" href="' . $aHref . '" title="' . $aTitle . '"><img src="' . $imgSrc . '"></a>';
+	$subject[] = '<a class="' . $aClass . '" href="' . $aHref . '" title="' . $aTitle . '"><span>Slice On/Off</span></a>';
 	
     return $subject;
 }
@@ -64,6 +62,11 @@ function updateSliceStatusInDB($articleID, $cLang, $sliceID, $newStatus) {
 	rex_deleteCacheArticleContent($articleID, $cLang);
 }
 
+function addCSSFile($params) {
+	$insert = '<link rel="stylesheet" type="text/css" href="../files/addons/slice_status/slice_status.css" />';
+	return $params['subject'] . "\r\n" . $insert;
+}
+
 function addJSCode($params) {
 	global $REX;
 	global $I18N;
@@ -72,29 +75,33 @@ function addJSCode($params) {
 		<!-- BEGIN slice_status -->
 		<script type=\"text/javascript\">
 			jQuery(document).ready(function($) {
+				prepareSlices();
 				toggleSliceVisibility();
 			});
 
-			function toggleSliceVisibility() {
-				// remove wrapper divs and make all slices visible (only for ajax mode important)
-				jQuery('.bg-wrap').find('.rex-content-editmode-slice-output').unwrap();
-				
+			function prepareSlices() {
 				var jSliceTitleBar = jQuery('.slice-status').parents('.rex-content-editmode-module-name');
 				var jSliceContent = jSliceTitleBar.next('.rex-content-editmode-slice-output');
-				
-				jSliceTitleBar.css('background', '');
-				jSliceContent.css('background', '');
-				jSliceContent.css('opacity', 1);
+
+				jSliceTitleBar.addClass('slice-title');
+				jSliceContent.addClass('slice-content');
+				jSliceContent.wrap('<div class=\"slice-content-wrap\" />');
+			}
+
+			function toggleSliceVisibility() {
+				// restore styles for all slices (only for ajax mode important)
+				jQuery('.slice-title').removeClass('offline');
+				jQuery('.slice-content-wrap').removeClass('offline');
+				jQuery('.slice-content').removeClass('offline');
 
 				// toggle visibility for offline slices
 				var jOfflineSliceTitleBar = jQuery('.slice-status.offline').parents('.rex-content-editmode-module-name');
-				var jOfflineSliceContent = jOfflineSliceTitleBar.next('.rex-content-editmode-slice-output');
+				var jOfflineSliceContentWrap = jOfflineSliceTitleBar.next('.slice-content-wrap');
+				var jOfflineSliceContent = jOfflineSliceContentWrap.find('.rex-content-editmode-slice-output');
 
-				jOfflineSliceTitleBar.css('background', '" . $REX['ADDON']['slice_status']['offline_slice_titlebar_background'] . "');
-				jOfflineSliceContent.wrap('<div class=\"bg-wrap\" style=\"background: ' + '" . $REX['ADDON']['slice_status']['offline_slice_content_background'] . "'  + ';\" />');
-				jOfflineSliceContent.css('background', '" . $REX['ADDON']['slice_status']['offline_slice_content_background'] . "');
-				jOfflineSliceContent.css('opacity', " . $REX['ADDON']['slice_status']['offline_slice_content_opacity'] . ");
-				
+				jOfflineSliceTitleBar.addClass('offline');
+				jOfflineSliceContentWrap.addClass('offline');
+				jOfflineSliceContent.addClass('offline');
 			}
 
 			function updateSliceStatus(articleID, cLang, sliceID, curStatus) {
@@ -102,12 +109,10 @@ function addJSCode($params) {
 				if (curStatus == 1) {
 					var aClass = 'slice-status slice-' + sliceID + ' offline';
 					var aTitle = '" . $I18N->msg('toggle_slice_online') . "';
-					var imgSrc = '/files/addons/slice_status/off.png';
 					var newStatus = '0';
 				} else {
 					var aClass = 'slice-status slice-' + sliceID + ' online';
 					var aTitle = '" . $I18N->msg('toggle_slice_offline') . "';
-					var imgSrc = '/files/addons/slice_status/on.png';
 					var newStatus = '1';
 				}
 
@@ -125,7 +130,6 @@ function addJSCode($params) {
 						jCurSlice.attr('title', aTitle);
 						jCurSlice.attr('href', aHref);
 						jCurSlice.attr('class', aClass);
-						jCurSlice.find('img').attr('src', imgSrc);
 						
 						toggleSliceVisibility();
 					}

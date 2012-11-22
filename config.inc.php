@@ -33,7 +33,10 @@ if ($REX['REDAXO']) {
 	// handle slice menu
 	rex_register_extension('ART_SLICE_MENU', 'modifySliceEditMenu');
 
-	// insert js code for coloring offline slices and also for ajax mode
+	// add css file
+	rex_register_extension('PAGE_HEADER', 'addCSSFile');
+
+	// add js code for coloring offline slices and also for ajax mode
 	rex_register_extension('OUTPUT_FILTER', 'addJSCode');
 }
 
