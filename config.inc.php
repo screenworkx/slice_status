@@ -1,29 +1,23 @@
 <?php
-$mypage = 'slice_status';
-
-$REX['ADDON']['rxid'][$mypage] = '1022';
-$REX['ADDON']['name'][$mypage] = 'Slice Status';
-$REX['ADDON']['page'][$mypage] = $mypage;
-$REX['ADDON']['version'][$mypage] = '1.0.5';
-$REX['ADDON']['author'][$mypage] = "WebDevOne";
-$REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
-$REX['ADDON']['perm'][$mypage] = 'slice_status[]';
+// slice status addon
+$REX['ADDON']['rxid']['slice_status'] = '1022';
+$REX['ADDON']['page']['slice_status'] = 'slice_status';
+$REX['ADDON']['version']['slice_status'] = '1.2.0';
+$REX['ADDON']['author']['slice_status'] = "WebDevOne";
+$REX['ADDON']['supportpage']['slice_status'] = 'forum.redaxo.de';
+$REX['ADDON']['perm']['slice_status'] = 'slice_status[]';
 
 $REX['PERM'][] = 'slice_status[]';
 
-// --- DYN
-$REX['ADDON']['slice_status']['offline_slice_titlebar_background'] = '#dddddd';
-$REX['ADDON']['slice_status']['offline_slice_content_background'] = '#e7e5e5';
-$REX['ADDON']['slice_status']['offline_slice_content_opacity'] = '0.6';
+// settings
 $REX['ADDON']['slice_status']['ajax_mode'] = true;
-// --- /DYN
 
 // includes
-require_once($REX['INCLUDE_PATH'] . '/addons/' . $mypage . '/functions/functions_slice_status.inc.php');
+require_once($REX['INCLUDE_PATH'] . '/addons/slice_status/functions/functions_slice_status.inc.php');
 
 if ($REX['REDAXO']) {
 	// add lang file
-	$I18N->appendFile($REX['INCLUDE_PATH'] . '/addons/' . $mypage . '/lang/');
+	$I18N->appendFile($REX['INCLUDE_PATH'] . '/addons/slice_status/lang/');
 
 	// update slice status in db if necessary
 	if (rex_get('function') == 'updateslicestatus') {

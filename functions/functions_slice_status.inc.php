@@ -30,7 +30,7 @@ function modifySliceEditMenu($params) {
 	}
 	
 	// inject link in slice menu
-	$subject[] = '<a class="' . $aClass . '" href="' . $aHref . '" title="' . $aTitle . '"><span>Slice On/Off</span></a>';
+	$subject[] = '<a class="' . $aClass . '" href="' . $aHref . '" title="' . $aTitle . '"><span>Slice Status</span></a>';
 	
     return $subject;
 }
@@ -85,7 +85,7 @@ function addJSCode($params) {
 
 				jSliceTitleBar.addClass('slice-title');
 				jSliceContent.addClass('slice-content');
-				jSliceContent.wrap('<div class=\"slice-content-wrap\" />');
+				jSliceContent.wrap('<div class=\"slice-content-wrap\" />'); // this is for opacity set in css
 			}
 
 			function toggleSliceVisibility() {

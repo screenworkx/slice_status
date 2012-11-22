@@ -7,38 +7,39 @@ Es ist der Nachfolger des slice_onoff Addons und wurde von Grund auf neu geschri
 Download/Installation
 ---------------------
 
-* Download hier unter _Download Packages_: https://github.com/RexDude/slice_status/downloads
+* Download unter _Download Packages_: https://github.com/RexDude/slice_status/downloads
 * ZIP-Archiv entpacken und in `/redaxo/include/addons` kopieren, im Backend Addon dann installieren und aktivieren
 
 Features
 --------
 
 * Fügt einen Button zum on/offline schalten von Blöcken (Slices) hinzu.
-* Offline Blöcke werden im BAckend mit anderer Farbe und geringerer Opacity dargestellt
+* Offline Blöcke werden im Backend mit anderer Farbe und geringerer Opacity dargestellt
+* Aussehen kann komplett über CSS geändert werden
+* AJAX Modus ein/ausschaltbar (in der config.inc.php)
 * Komplett neuer und vereinfachter Code
 
 Änderungen gegenüber Vorversion (slice_onoff 0.3)
 -------------------------------------------------
 
-* On/Offline schalten mit Ajax entfernt
+* Läuft auch ohne AJAX
 * Radiobuttons innerhalb der Blöcke (rechts unten) entfernt
 * Es wird nur noch eine If-Abfrage pro Offline-Slice generiert
+* Kompletter Code Rewrite
 
 Hinweise
 --------
 
 * Getestet mit REDAXO 4.4.1
 * Addon-Ordner lautet: `slice_status`
-* Momentan kann Farbe/Opacity der Offline-Slices nur über die `/files/addons/slice_status/functions.js` geändert werden
+* AJAX Modus auschaltbar über die config.inc.php
+* Farbe/Opacity der Offline-Slices änderbar in `/files/addons/slice_status/slice_status.css`
 * Alte Version wurde als Branch archiviert
 
 Todo's
 ------
 
 * Eigene Backend-Seite mit Einstellungsmöglichkeiten
-* Einstellung: Farbe/Opacity der Offline-Slices
-* Einstellung: Icon und/oder nur Textlink anzeigen
-* Einstellung: Ajax on/off
 * Benutzern nur mit Artikel-Schreibrechten On/Offline-Status setzten lassen
 * Online von/bis Funktionalität hinzufügen: https://github.com/RexDude/slice_status/issues/2
 
