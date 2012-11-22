@@ -2,7 +2,7 @@
 /* ---------------- slice menu -------------- */
 
 a.slice-status {
-	background: transparent url("icon.png") no-repeat;
+	background: transparent url("status_icon.png") no-repeat;
 	margin-left: -4px;
 	width: 16px;
 	height: 16px;
@@ -32,3 +32,4 @@ div.slice-content.offline {
 	opacity: 0.6;
 }
 
+/* ------------------------------------------ */
