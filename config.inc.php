@@ -27,7 +27,7 @@ if ($REX['REDAXO']) {
 	// handle slice menu
 	rex_register_extension('ART_SLICE_MENU', 'modifySliceEditMenu');
 
-	// add css/js files
+	// add css/js files to page header
 	rex_register_extension('PAGE_HEADER', 'appendToPageHeader');
 }
 

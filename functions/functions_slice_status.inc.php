@@ -1,15 +1,34 @@
 <?php
+function fetchSliceStatus() {
+	global $REX;
+	$fetchedSliceStatus = array();
+	
+	$sqlStatement = 'SELECT id, status FROM '.$REX['TABLE_PREFIX'] . 'article_slice';
+	$sql = rex_sql::factory();
+	$sql->setQuery($sqlStatement);
+
+	for ($i = 0; $i < $sql->getRows(); $i++) {
+		$fetchedSliceStatus[$sql->getValue('id')] = $sql->getValue('status');
+		$sql->next();
+	}
+
+	return $fetchedSliceStatus;
+}
+
 function modifySliceEditMenu($params) {
 	global $REX;
 	global $I18N;
+	global $slices;
 	
 	extract($params);
 
-	// get current status of slice
-	$sqlStatement = 'SELECT status FROM '.$REX['TABLE_PREFIX'] . 'article_slice WHERE id = ' . $slice_id;
-	$sql = rex_sql::factory();
-	$sql->setQuery($sqlStatement);
-	$curStatus = $sql->getValue('status');
+	// get status of current slice
+	if (!isset($slices)) {
+		// with this now only one db query is necessary
+		$slices = fetchSliceStatus();
+	}
+	
+	$curStatus = $slices[$slice_id];
 
 	// retrieve stuff for new status
 	if ($curStatus == 1) {
