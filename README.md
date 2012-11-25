@@ -24,6 +24,7 @@ Features
 
 * Läuft auch ohne AJAX
 * Radiobuttons innerhalb der Blöcke (rechts unten) entfernt
+* On/Off Button hinter die Move Up/Down Buttons gesetzt
 * Es wird nur noch eine If-Abfrage pro Offline-Slice generiert
 * Kompletter Code Rewrite
 

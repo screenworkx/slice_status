@@ -54,7 +54,7 @@ function modifySliceEditMenu($params) {
 	
 	$subject[] = $statusLink;
 	
-    return $subject;
+	return $subject;
 }
 
 function sliceShow($params) {

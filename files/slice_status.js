@@ -4,6 +4,7 @@ jQuery(document).ready(function($) {
 });
 
 function prepareSlices() {
+	// insert some css classes for styling and easier jquery access
 	var jSliceTitleBar = jQuery('.slice-status').parents('.rex-content-editmode-module-name');
 	var jSliceContent = jSliceTitleBar.next('.rex-content-editmode-slice-output');
 
@@ -12,12 +13,14 @@ function prepareSlices() {
 	jSliceContent.wrap('<div class=\"slice-content-wrap\" />'); // this is for opacity set in css
 }
 
-function toggleSliceVisibility() {
+function restoreSliceVisibility() {
 	// restore styles for all slices (only for ajax mode important)
 	jQuery('.slice-title').removeClass('offline');
 	jQuery('.slice-content-wrap').removeClass('offline');
 	jQuery('.slice-content').removeClass('offline');
+}
 
+function toggleSliceVisibility() {
 	// toggle visibility for offline slices
 	var jOfflineSliceTitleBar = jQuery('.slice-status.offline').parents('.rex-content-editmode-module-name');
 	var jOfflineSliceContentWrap = jOfflineSliceTitleBar.next('.slice-content-wrap');
@@ -55,6 +58,7 @@ function updateSliceStatus(articleID, cLang, sliceID, curStatus) {
 			jCurSlice.attr('href', aHref);
 			jCurSlice.attr('class', aClass);
 			
+			restoreSliceVisibility();
 			toggleSliceVisibility();
 		}
 	});
