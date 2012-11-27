@@ -3,7 +3,7 @@ function fetchSliceStatus() {
 	global $REX;
 	$fetchedSliceStatus = array();
 	
-	$sqlStatement = 'SELECT id, status FROM '.$REX['TABLE_PREFIX'] . 'article_slice';
+	$sqlStatement = 'SELECT id, status FROM ' . $REX['TABLE_PREFIX'] . 'article_slice';
 	$sql = rex_sql::factory();
 	$sql->setQuery($sqlStatement);
 

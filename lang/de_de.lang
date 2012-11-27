@@ -3,3 +3,5 @@
 toggle_slice_offline = Offline schalten
 toggle_slice_online = Online schalten
 
+import_msg = Daten von AddOn "slice_onoff" wurden übernommen
+
