@@ -28,13 +28,13 @@ Features
 * Es wird nur noch eine If-Abfrage pro Offline-Slice generiert
 * Kompletter Code Rewrite
 
-Update von slice_onoff auf slice_status
+Wechsel von slice_onoff auf slice_status
 ----------------------------------------
 
-1. slice_status installieren. Es werden automatisch die Daten von slice_onoff importiert.
-2. slice_onoff deinstallieren/löschen.
+1. `slice_status` installieren. Es werden automatisch die Daten von `slice_onoff` importiert.
+2. `slice_onoff` deinstallieren/löschen.
 
-Will man keinen Import so deinstalliert man slice_onoff zuvor.
+Will man keinen Import so deinstalliert man `slice_onoff` zuvor.
 
 Hinweise
 --------
