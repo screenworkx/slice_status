@@ -2,7 +2,7 @@
 // slice status addon
 $REX['ADDON']['rxid']['slice_status'] = '1022';
 $REX['ADDON']['page']['slice_status'] = 'slice_status';
-$REX['ADDON']['version']['slice_status'] = '1.2.1';
+$REX['ADDON']['version']['slice_status'] = '1.2.2';
 $REX['ADDON']['author']['slice_status'] = "WebDevOne";
 $REX['ADDON']['supportpage']['slice_status'] = 'forum.redaxo.de';
 $REX['ADDON']['perm']['slice_status'] = 'slice_status[]';
