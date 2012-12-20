@@ -4,12 +4,6 @@ Slice Status Addon (aka Slice On/Off) für REDAXO 4
 Dieses REDAXO-Addon fügt einen On/Offline-Schalter für Artikelblöcke (Slices) hinzu. 
 Es ist der Nachfolger des slice_onoff Addons und wurde von Grund auf neu geschrieben.
 
-Download/Installation
----------------------
-
-* Download unter _Download Packages_: https://github.com/RexDude/slice_status/downloads
-* ZIP-Archiv entpacken und in `/redaxo/include/addons` kopieren, im Backend Addon dann installieren und aktivieren
-
 Features
 --------
 
