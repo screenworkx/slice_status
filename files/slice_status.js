@@ -51,7 +51,7 @@ function updateSliceStatus(articleID, cLang, sliceID, curStatus) {
 	// make ajax call to update slice status in db (php function 'updateSliceStatusInDB' is called in config.inc.php)
 	jQuery.ajax({ 
 		type: 'GET',
-		url: '/redaxo/index.php?function=updateslicestatus&new_status=' + newStatus + '&slice_id=' + sliceID + '&article_id=' + articleID + '&clang=' + cLang + '',
+		url: window.location.pathname + '?function=updateslicestatus&new_status=' + newStatus + '&slice_id=' + sliceID + '&article_id=' + articleID + '&clang=' + cLang + '',
 		success: function(data) {
 			// finally modify hmtl markup, so that new slice status is reflected
 			jCurSlice.attr('title', aTitle);
