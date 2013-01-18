@@ -13,7 +13,7 @@ $REX['PERM'][] = 'slice_status[]';
 $REX['ADDON']['slice_status']['ajax_mode'] = true;
 
 // includes
-require_once($REX['INCLUDE_PATH'] . '/addons/slice_status/functions/functions_slice_status.inc.php');
+require_once($REX['INCLUDE_PATH'] . '/addons/slice_status/classes/class.rex_slice_status.inc.php');
 
 if ($REX['REDAXO']) {
 	// add lang file
@@ -21,16 +21,16 @@ if ($REX['REDAXO']) {
 
 	// update slice status in db if necessary
 	if (rex_get('function') == 'updateslicestatus') {
-		updateSliceStatusInDB(rex_get('article_id'), rex_get('clang'), rex_get('slice_id'), rex_get('new_status'));
+		rex_slice_status::updateSliceStatusInDB(rex_get('article_id'), rex_get('clang'), rex_get('slice_id'), rex_get('new_status'));
 	}
 
 	// handle slice menu
-	rex_register_extension('ART_SLICE_MENU', 'modifySliceEditMenu');
+	rex_register_extension('ART_SLICE_MENU', 'rex_slice_status::modifySliceEditMenu');
 
 	// add css/js files to page header
-	rex_register_extension('PAGE_HEADER', 'appendToPageHeader');
+	rex_register_extension('PAGE_HEADER', 'rex_slice_status::appendToPageHeader');
 }
 
 // handle slice visibility in frontend
-rex_register_extension('SLICE_SHOW', 'sliceShow');
+rex_register_extension('SLICE_SHOW', 'rex_slice_status::sliceShow');
 ?>
